@@ -2,7 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>My First Parcel App</title>
+    <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta httpEquiv='content-language' content='en' />
+    <meta name='viewport' id='viewporttag' content='width=device-width, user-scalable=no, initial-scale=1' />
+
+    <link rel='apple-touch-icon' sizes='57x57' href='./favicons/apple-icon-57x57.png' />
+    <link rel='apple-touch-icon' sizes='60x60' href='./favicons/apple-icon-60x60.png' />
+    <link rel='apple-touch-icon' sizes='72x72' href='./favicons/apple-icon-72x72.png' />
+    <link rel='apple-touch-icon' sizes='76x76' href='./favicons/apple-icon-76x76.png' />
+    <link rel='apple-touch-icon' sizes='114x114' href='./favicons/apple-icon-114x114.png' />
+    <link rel='apple-touch-icon' sizes='120x120' href='./favicons/apple-icon-120x120.png' />
+    <link rel='apple-touch-icon' sizes='144x144' href='./favicons/apple-icon-144x144.png' />
+    <link rel='apple-touch-icon' sizes='152x152' href='./favicons/apple-icon-152x152.png' />
+    <link rel='apple-touch-icon' sizes='180x180' href='./favicons/apple-icon-180x180.png' />
+    <link rel='icon' type='image/png' sizes='192x192' href='./favicons/android-icon-192x192.png' />
+    <link rel='icon' type='image/png' sizes='32x32' href='./favicons/favicon-32x32.png' />
+    <link rel='icon' type='image/png' sizes='96x96' href='./favicons/favicon-96x96.png' />
+    <link rel='icon' type='image/png' sizes='16x16' href='./favicons/favicon-16x16.png' />
+
+    <meta name='msapplication-TileColor' content='#222222' />
+    <meta name='msapplication-TileImage' content='./favicons/ms-icon-144x144.png' />
+
+    <meta name='theme-color' content='#222222'></meta>
+
+    <title>TensorFlow Gym Pose</title>
+    <meta name='description' content="A Gym Pose tracker build with TensorFlow" />
     <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./app.js"></script>
   </head>
@@ -34,6 +58,17 @@
         data-marker-left-ear
         data-content="left_ear"
       ></span>
+      <span class="line" data-active="false" data-line-ears></span>
+      <span
+        class="line"
+        data-active="false"
+        data-line-left-shoulder-to-ear
+      ></span>
+      <span
+        class="line"
+        data-active="false"
+        data-line-right-shoulder-to-ear
+      ></span>
       <span
         class="marker"
         data-active="false"
@@ -45,6 +80,17 @@
         data-active="false"
         data-marker-left-shoulder
         data-content="left-shoulder"
+      ></span>
+      <span class="line" data-active="false" data-line-shoulders></span>
+      <span
+        class="line"
+        data-active="false"
+        data-line-left-shoulder-to-hip
+      ></span>
+      <span
+        class="line"
+        data-active="false"
+        data-line-right-shoulder-to-hip
       ></span>
       <span
         class="marker"
@@ -58,12 +104,16 @@
         data-marker-left-elbow
         data-content="left-elbow"
       ></span>
+      <span class="line" data-active="false" data-line-left-upperarm></span>
+      <span class="line" data-active="false" data-line-left-lowerarm></span>
       <span
         class="marker"
         data-active="false"
         data-marker-right-elbow
         data-content="right-elbow"
       ></span>
+      <span class="line" data-active="false" data-line-right-upperarm></span>
+      <span class="line" data-active="false" data-line-right-lowerarm></span>
       <span
         class="marker"
         data-active="false"
@@ -76,18 +126,25 @@
         data-marker-right-wrist
         data-content="right-wrist"
       ></span>
+      <span class="line" data-active="false" data-line-left-upperbody></span>
+      <span class="line" data-active="false" data-line-right-upperbody></span>
       <span
         class="marker"
         data-active="false"
         data-marker-left-hip
         data-content="left_hip"
       ></span>
+      <span class="line" data-active="false" data-line-hips></span>
+      <span class="line" data-active="false" data-line-left-upperleg></span>
+      <span class="line" data-active="false" data-line-left-lowerleg></span>
       <span
         class="marker"
         data-active="false"
         data-marker-right-hip
         data-content="right-hip"
       ></span>
+      <span class="line" data-active="false" data-line-right-upperleg></span>
+      <span class="line" data-active="false" data-line-right-lowerleg></span>
       <span
         class="marker"
         data-active="false"
@@ -114,11 +171,11 @@
       ></span>
 
       <dl class="detections">
-        <div class="detections__item">
+        <div class="detections__item detections__item--wide">
           <dt class="detections__title">Overall</dt>
           <dd class="detections__data" data-detection-output-overall>-</dd>
         </div>
-        <div class="detections__item">
+        <div class="detections__item detections__item--wide">
           <dt class="detections__title">
             <img class="detections__icon" src="./icons/nose.svg" alt="nose" />
           </dt>
