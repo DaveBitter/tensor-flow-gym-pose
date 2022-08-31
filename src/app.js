@@ -149,11 +149,11 @@ import "@tensorflow/tfjs-backend-webgl";
       const translateY = (y / 480) * window.innerHeight;
       values[name] = { x: translateX, y: translateY, score };
 
-      outputs[name.replace("_", "-")].innerHTML = `${parseInt(x)}, ${parseInt(
-        y
-      )}, <span data-score=${score > 0.5 ? "good" : "bad"}>${parseInt(
-        score * 100
-      )}% </span>`;
+      outputs[name.replace("_", "-")].innerHTML = `${parseInt(
+        translateX
+      )}, ${parseInt(translateY)}, <span data-score=${
+        score > 0.5 ? "good" : "bad"
+      }>${parseInt(score * 100)}% </span>`;
 
       markers[name.replace("_", "-")].dataset.active = `${score > 0.5}`;
       markers[name.replace("_", "-")].style.transform = `translate(${
