@@ -4,6 +4,7 @@ import "@tensorflow/tfjs-backend-webgl";
 
 (async () => {
   const video = document.querySelector("[data-video]");
+  const videoPlaceholder = document.querySelector("[data-video-placeholder]");
 
   const detections = [
     "overall",
@@ -85,6 +86,7 @@ import "@tensorflow/tfjs-backend-webgl";
     .then((stream) => {
       // Changing the source of video to current stream.
       video.srcObject = stream;
+      videoPlaceholder.srcObject = stream;
       video.addEventListener("loadedmetadata", () => {
         video.play();
       });
@@ -145,8 +147,9 @@ import "@tensorflow/tfjs-backend-webgl";
 
     const values = {};
     keypoints.forEach(({ name, x, y, score }) => {
-      const translateX = (x / 640) * window.innerWidth;
-      const translateY = (y / 480) * window.innerHeight;
+      const translateX = (x / videoPlaceholder.scrollWidth) * window.innerWidth;
+      const translateY =
+        (y / videoPlaceholder.scrollHeight) * window.innerHeight;
       values[name] = { x: translateX, y: translateY, score };
 
       outputs[name.replace("_", "-")].innerHTML = `${parseInt(
