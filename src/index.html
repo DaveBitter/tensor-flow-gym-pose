@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>My First Parcel App</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <main class="app">
+      <video class="video" data-video></video>
+
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-nose
+        data-content="nose"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-eye
+        data-content="left_eye"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-eye
+        data-content="right-eye"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-ear
+        data-content="left_ear"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-ear
+        data-content="right-ear"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-shoulder
+        data-content="left-shoulder"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-shoulder
+        data-content="right-shoulder"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-elbow
+        data-content="left-elbow"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-elbow
+        data-content="right-elbow"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-wrist
+        data-content="left-wrist"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-wrist
+        data-content="right-wrist"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-hip
+        data-content="left_hip"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-hip
+        data-content="right-hip"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-knee
+        data-content="left-knee"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-knee
+        data-content="right-knee"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-left-ankle
+        data-content="left-ankle"
+      ></span>
+      <span
+        class="marker"
+        data-active="false"
+        data-marker-right-ankle
+        data-content="right-ankle"
+      ></span>
+
+      <dl class="detections">
+        <div class="detections__item">
+          <dt class="detections__title">Overall</dt>
+          <dd class="detections__data" data-detection-output-overall>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title">
+            <img class="detections__icon" src="./icons/nose.svg" alt="nose" />
+          </dt>
+          <dd class="detections__data" data-detection-output-nose>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/eye.svg"
+              alt="left eye"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-eye>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/eye.svg"
+              alt="right eye"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-eye>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/ear.svg"
+              alt="left ear"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-ear>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/ear.svg"
+              alt="right ear"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-ear>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/shoulder.svg"
+              alt="left shoulder"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-shoulder>
+            -
+          </dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/shoulder.svg"
+              alt="right shoulder"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-shoulder>
+            -
+          </dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/elbow.svg"
+              alt="left elbow"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-elbow>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/elbow.svg"
+              alt="right elbow"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-elbow>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/wrist.svg"
+              alt="left wrist"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-wrist>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/wrist.svg"
+              alt="right wrist"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-wrist>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/hip.svg"
+              alt="left hip"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-hip>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/hip.svg"
+              alt="right hip"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-hip>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/knee.svg"
+              alt="left knee"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-knee>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/knee.svg"
+              alt="right knee"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-knee>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="l">
+            <img
+              class="detections__icon"
+              src="./icons/ankle.svg"
+              alt="left ankle"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-left-ankle>-</dd>
+        </div>
+        <div class="detections__item">
+          <dt class="detections__title" data-side="r">
+            <img
+              class="detections__icon"
+              src="./icons/ankle.svg"
+              alt="right ankle"
+            />
+          </dt>
+          <dd class="detections__data" data-detection-output-right-ankle>-</dd>
+        </div>
+      </dl>
+    </main>
+  </body>
+</html>
