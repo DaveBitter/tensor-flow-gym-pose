@@ -147,9 +147,26 @@ import "@tensorflow/tfjs-backend-webgl";
 
     const values = {};
     keypoints.forEach(({ name, x, y, score }) => {
-      const translateX = (x / videoPlaceholder.scrollWidth) * window.innerWidth;
-      const translateY =
-        (y / videoPlaceholder.scrollHeight) * window.innerHeight;
+      const videoWidthByAspectRatio =
+        window.innerHeight *
+        (videoPlaceholder.scrollWidth / videoPlaceholder.scrollHeight);
+      const videoHeightByAspectRatio =
+        window.innerWidth *
+        (videoPlaceholder.scrollHeight / videoPlaceholder.scrollWidth);
+
+      let factorX;
+      let factorY;
+
+      if (window.innerHeight > window.innerWidth) {
+        factorY = window.innerHeight / videoPlaceholder.scrollHeight;
+        factorX = videoWidthByAspectRatio / videoPlaceholder.scrollWidth;
+      } else {
+        factorY = videoHeightByAspectRatio / videoPlaceholder.scrollHeight;
+        factorX = window.innerWidth / videoPlaceholder.scrollWidth;
+      }
+
+      const translateX = factorX * x;
+      const translateY = factorY * y;
       values[name] = { x: translateX, y: translateY, score };
 
       outputs[name.replace("_", "-")].innerHTML = `${parseInt(
