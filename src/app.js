@@ -5,6 +5,7 @@ import "@tensorflow/tfjs-backend-webgl";
 (async () => {
   const video = document.querySelector("[data-video]");
   const videoPlaceholder = document.querySelector("[data-video-placeholder]");
+  const squadCounter = document.querySelector("[data-squad-counter]");
 
   const detections = [
     "overall",
@@ -76,6 +77,15 @@ import "@tensorflow/tfjs-backend-webgl";
   const detector = await poseDetection.createDetector(
     poseDetection.SupportedModels.MoveNet
   );
+
+  const state = {
+    prevHipY: null,
+    curHipY: null,
+    baseHipY: null,
+    squatPosition: null,
+    eligbleForPoint: false,
+    squadCount: 0,
+  };
 
   const mediaDevices = navigator.mediaDevices;
   mediaDevices
@@ -179,6 +189,31 @@ import "@tensorflow/tfjs-backend-webgl";
       markers[name.replace("_", "-")].style.transform = `translate(${
         translateX - 15
       }px, ${translateY - 15}px)`;
+
+      if (name === "left_hip") {
+        if (!state.baseHipY) {
+          state.baseHipY = y;
+          state.squatPosition = "up";
+        }
+
+        if (y > state.baseHipY * 1.2) {
+          state.squatPosition = "down";
+          state.eligbleForPoint = true;
+        } else if (y > state.baseHipY) {
+          state.squatPosition = "between";
+        } else {
+          state.squatPosition = "up";
+
+          if (state.eligbleForPoint) {
+            state.squadCount += 1;
+            state.eligbleForPoint = false;
+          }
+        }
+
+        state.curHipY = y;
+
+        squadCounter.innerHTML = state.squadCount;
+      }
     });
 
     const {

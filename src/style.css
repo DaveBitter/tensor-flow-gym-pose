@@ -185,3 +185,15 @@ body {
     height: 2rem;
   }
 }
+
+.squad-counter {
+  z-index: 1000;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  font-size: 10vh;
+  padding: 1rem 2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1rem);
+}
