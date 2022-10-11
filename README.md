@@ -4,7 +4,7 @@
 
 ## What is it?
 
-This application was build in a few hours during one of our Google Days where we get to try out different technologies and hack concepts together. TensorFlow.js brings Machine Learning (ML) to the browser. This results in this demo fully running on the client of the user without the need of a server to execute the TensorFlow logic on.
+This application was build in a few hours during one of the [iO](https://github.com/iodigital-com) Google Days where we get to try out different technologies and hack concepts together. TensorFlow.js brings Machine Learning (ML) to the browser. This results in this demo fully running on the client of the user without the need of a server to execute the TensorFlow logic on.
 
 ## Why is it cool?
 
