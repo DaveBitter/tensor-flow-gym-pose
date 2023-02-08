@@ -6,6 +6,7 @@ import "@tensorflow/tfjs-backend-webgl";
   const video = document.querySelector("[data-video]");
   const videoPlaceholder = document.querySelector("[data-video-placeholder]");
   const squadCounter = document.querySelector("[data-squad-counter]");
+  const webcamSelect = document.querySelector("[data-webcam-select]");
 
   const detections = [
     "overall",
@@ -85,22 +86,85 @@ import "@tensorflow/tfjs-backend-webgl";
     squatPosition: null,
     eligbleForPoint: false,
     squadCount: 0,
+    hasFilledWebcamOptions: false,
   };
 
-  const mediaDevices = navigator.mediaDevices;
-  mediaDevices
-    .getUserMedia({
-      video: true,
-      audio: false,
-    })
-    .then((stream) => {
-      // Changing the source of video to current stream.
+  const loadVideoStream = (stream) =>
+    new Promise((resolve) => {
       video.srcObject = stream;
       videoPlaceholder.srcObject = stream;
-      video.addEventListener("loadedmetadata", () => {
-        video.play();
-      });
+      videoPlaceholder.addEventListener("loadedmetadata", resolve);
     });
+
+  const onUserMedia = (stream) => {
+    return new Promise(async (resolve) => {
+      await loadVideoStream(stream);
+
+      video.play();
+      videoPlaceholder.play();
+
+      resolve();
+    });
+  };
+
+  const initWebcamStreams = async (deviceIdToUse) => {
+    const mediaDevices = await navigator.mediaDevices.enumerateDevices();
+    const videoDevices = mediaDevices.filter(
+      (mediaDevice) => mediaDevice.kind === "videoinput"
+    );
+
+    !state.hasFilledWebcamOptions &&
+      videoDevices.forEach((videoDevice, index) => {
+        const option = document.createElement("option");
+        const label = videoDevice.label.split(" (")[0] || `Camera ${index++}`;
+        const textNode = document.createTextNode(label);
+
+        option.value = videoDevice.deviceId;
+        option.appendChild(textNode);
+        webcamSelect.appendChild(option);
+
+        state.hasFilledWebcamOptions = true;
+      });
+
+    const cachedVideoDeviceId = localStorage.getItem("selectedVideoDeviceId");
+
+    const selectedDeviceId =
+      deviceIdToUse || cachedVideoDeviceId || videoDevices[0].deviceId;
+    webcamSelect.value = selectedDeviceId;
+
+    localStorage.setItem("selectedVideoDeviceId", selectedDeviceId);
+
+    await navigator.mediaDevices
+      .getUserMedia({
+        video: {
+          deviceId: selectedDeviceId,
+        },
+        audio: false,
+      })
+      .then(onUserMedia)
+      .catch(alert);
+  };
+
+  initWebcamStreams();
+
+  webcamSelect.addEventListener("change", ({ target }) => {
+    return initWebcamStreams(target.value);
+  });
+
+  // const mediaDevices = navigator.mediaDevices;
+  // mediaDevices
+  //   .getUserMedia({
+  //     video: true,
+  //     audio: false,
+  //   })
+  //   .then((stream) => {
+  //     // Changing the source of video to current stream.
+  //     video.srcObject = stream;
+  //     videoPlaceholder.srcObject = stream;
+  //     video.addEventListener("loadedmetadata", () => {
+  //       video.play();
+  //     });
+  //   });
 
   const drawLine = (left, right, line) => {
     const box = {

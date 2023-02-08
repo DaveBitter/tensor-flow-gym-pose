@@ -197,3 +197,26 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(1rem);
 }
+
+.webcam-selector {
+  position: absolute;
+  top: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 80rem) {
+  .webcam-selector {
+    left: 25%;
+  }
+}
+
+.webcam-selector__select {
+  padding: 1rem;
+  border-radius: 1rem;
+  border-color: transparent;
+  border-right: 1rem solid transparent;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1rem);
+}
